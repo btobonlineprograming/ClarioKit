@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FoundationModels
+//import FoundationModels
 
 
 #if canImport(FoundationModels)
@@ -19,14 +19,7 @@ public class FoundationModelsProvider {
         let rawText = document.rawText
         switch model.availability {
         case .available:
-            let instructions = """
-            You are a helpful assistant specialized in reading and summarizing documents.
-
-            Summarize the provided document clearly and concisely. Focus on the key ideas, important details, and general purpose of the text.
-
-            Avoid unnecessary repetition, and do not include formatting from the original file.
-            Limit the summary to a few concise paragraphs.
-            """
+            let instructions = ClarioConstant.summarize
 
              let session = LanguageModelSession(instructions: instructions)
             

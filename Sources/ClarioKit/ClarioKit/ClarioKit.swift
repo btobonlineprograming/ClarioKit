@@ -17,14 +17,29 @@ public final class ClarioKit {
     public func summarize(document: ClarioDocument) async throws -> String {
         switch(model) {
         case .foundation:
+            
             if #available(iOS 26.0, *) {
-                let provider = FoundationModelsProvider()
-                return try await provider.summarize(document: document)
+//                let provider = FoundationModelsProvider()
+//                return try await provider.summarize(document: document)
             } else {
                 throw ClarioKitError.unavailableModel
             }
-        case .openAI, .gemini:
+            
             throw ClarioKitError.unsupportedModel
+            
+        case .openAI(_):
+            
+            throw ClarioKitError.unsupportedModel
+        
+        case .gemini(let apiKey):
+            
+            if #available(iOS 13.0, *) {
+                let provider = GeminiProvider(apiKey: apiKey)
+                return try await provider.summarize(document: document)}
+            else {
+                throw ClarioKitError.unavailableModel
+            }
+            
         @unknown default:
             throw ClarioKitError.unsupportedModel
         }

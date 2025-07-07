@@ -14,17 +14,21 @@ public enum DocumentType {
 
 public struct ClarioDocument {
     public let rawText: String
+    public let sourceURL: URL
     
     public init(from file: DocumentType) throws {
         switch(file) {
         case .pdf(let src):
+            sourceURL = src
             rawText = Self.extractText(pdfURL: src)
         case .docx(let src):
+            sourceURL = src
             rawText = Self.extractText(docxURL: src)
         }
     }
     
     private static func extractText(pdfURL: URL) -> String {
+        
         guard let pdf = PDFDocument(url: pdfURL) else {
             return ""
         }
