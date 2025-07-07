@@ -25,7 +25,7 @@ import ClarioKit
 The next step is to instantiate ClarioKit's engine by specifying the model of your choice.
 
 ```
-let clario = ClarioKit(model: .gemini(apiKey: "YOUR GEMINI API KEY")
+let clario = ClarioEngine(model: .gemini(apiKey: "YOUR GEMINI API KEY")
 
 ```
 Initialize the ClarioDocument from the user's upload or document picker.
