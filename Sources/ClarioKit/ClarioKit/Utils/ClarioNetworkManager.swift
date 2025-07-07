@@ -13,7 +13,6 @@ final class ClarioNetworkManager {
     static let shared = ClarioNetworkManager()
     private init() {}
 
-    @available(iOS 13.0, *)
     func get<T: Decodable>(url: URL) async throws -> T {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -34,7 +33,6 @@ final class ClarioNetworkManager {
         }
     }
 
-    @available(iOS 13.0, *)
     func post<T: Decodable, U: Encodable>(url: URL, body: U) async throws -> T {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -60,7 +58,6 @@ final class ClarioNetworkManager {
 
     // MARK: - Legacy Support
 
-    @available(iOS 13.0, *)
     private func legacyData(for request: URLRequest) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
             URLSession.shared.dataTask(with: request) { data, response, error in

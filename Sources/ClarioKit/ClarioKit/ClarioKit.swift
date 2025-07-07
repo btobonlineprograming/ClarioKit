@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class ClarioKit {
+public final class ClarioEngine {
     let model: ClarioModel
     
     public init(model: ClarioModel) {
@@ -18,28 +18,20 @@ public final class ClarioKit {
         switch(model) {
         case .foundation:
             
-            if #available(iOS 26.0, *) {
+//            if #available(iOS 26.0, *) {
 //                let provider = FoundationModelsProvider()
 //                return try await provider.summarize(document: document)
-            } else {
-                throw ClarioKitError.unavailableModel
-            }
+//            } else {
+//                throw ClarioKitError.unavailableModel
+//            }
             
+            print("Not supported yet")
             throw ClarioKitError.unsupportedModel
-            
-        case .openAI(_):
-            
+        case .openAI:
             throw ClarioKitError.unsupportedModel
-        
         case .gemini(let apiKey):
-            
-            if #available(iOS 13.0, *) {
-                let provider = GeminiProvider(apiKey: apiKey)
-                return try await provider.summarize(document: document)}
-            else {
-                throw ClarioKitError.unavailableModel
-            }
-            
+            let provider = GeminiProvider(apiKey: apiKey)
+            return try await provider.summarize(document: document)
         @unknown default:
             throw ClarioKitError.unsupportedModel
         }
