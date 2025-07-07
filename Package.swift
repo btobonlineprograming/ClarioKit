@@ -16,7 +16,7 @@ let package = Package(
         .binaryTarget(
             name: "ClarioKit",
             url: "https://github.com/yohannescodes/ClarioKit/releases/download/v1.0.0/ClarioKit.xcframework.zip",
-            checksum: ""
+            checksum: "dfdfc62ecbc4e93f9318e830ef80d954c2e91805ef335a29a4650ddf4b3f63b5"
         )
     ]
 )
