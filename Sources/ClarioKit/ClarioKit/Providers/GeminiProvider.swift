@@ -15,7 +15,6 @@ public class GeminiProvider {
         self.apiKey = apiKey
     }
     
-    @available(iOS 13.0, *)
     func summarize(document: ClarioDocument) async throws -> String {
         do {
             let pdfData = try Data(contentsOf: document.sourceURL)
